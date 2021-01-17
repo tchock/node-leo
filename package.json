@@ -1,0 +1,14 @@
+{
+  "name": "node-leo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "leo": "./index.js"
+  },
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "fast-xml-parser": "^3.17.6",
+    "node-fetch": "^2.6.1"
+  }
+}
