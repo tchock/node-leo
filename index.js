@@ -5,7 +5,11 @@ const fetch = require('node-fetch');
 const AsciiTable = require('ascii-table')
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
-const argv = yargs(hideBin(process.argv)).argv
+const argv = yargs(hideBin(process.argv)).option('cp', {
+  alias: 'cp',
+  type: 'boolean',
+  description: 'Copy'
+}).argv
 const inquirer = require('inquirer');
 
 function transformWord(word) {
