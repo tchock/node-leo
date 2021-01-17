@@ -4,7 +4,7 @@
 const fetch = require('node-fetch');
 const AsciiTable = require('ascii-table')
 
-function germanEnglish(query) {
+function queryLeo(langCode, query) {
   const table = new AsciiTable();
 
   function addEntryToTable(entry) {
@@ -19,7 +19,7 @@ function germanEnglish(query) {
     }
   }
 
-  fetch(`https://dict.leo.org/dictQuery/m-vocab/ende/query.xml?lp=ende&lang=de&search=${query}&side=both&order=basic&partial=show&sectLenMax=16&n=1&filtered=-1&trigger=`)
+  fetch(`https://dict.leo.org/dictQuery/m-vocab/${langCode}de/query.xml?lp=${langCode}de&lang=de&search=${query}&side=both&order=basic&partial=show&sectLenMax=16&n=1&filtered=-1&trigger=`)
     .then(res => res.text())
     .then(res => parser.parse(res))
     .then(res => {
@@ -32,4 +32,6 @@ function germanEnglish(query) {
     .then(() => console.log(table.toString()))
 }
 
-germanEnglish(process.argv[2]);
+const [,,lang,...queryArr] = process.argv;
+const query = queryArr.join(' ');
+queryLeo(lang, query);
