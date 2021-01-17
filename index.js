@@ -3,6 +3,9 @@
  const parser = require('fast-xml-parser');
 const fetch = require('node-fetch');
 const AsciiTable = require('ascii-table')
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv)).argv
 
 function queryLeo(langCode, query) {
   const table = new AsciiTable();
@@ -32,6 +35,6 @@ function queryLeo(langCode, query) {
     .then(() => console.log(table.toString()))
 }
 
-const [,,lang,...queryArr] = process.argv;
-const query = queryArr.join(' ');
+const lang = argv.lang || 'en';
+const query = argv._.join(' ');
 queryLeo(lang, query);
